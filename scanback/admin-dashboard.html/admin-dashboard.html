@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - SCAN BACK</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">👑</div>
+                <div class="logo-text">
+                    <span class="logo-main">SCAN</span>
+                    <span class="logo-sub">BACK</span>
+                    <span class="logo-badge">ADMIN</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="#" onclick="exportCustomers()"><i class="fas fa-download"></i> Export Data</a>
+                <a href="#" onclick="exportReports()"><i class="fas fa-chart-bar"></i> Reports</a>
+                <a href="#" onclick="bulkGenerateQR()"><i class="fas fa-qrcode"></i> Bulk Generate</a>
+                <a href="#" onclick="addNewCustomer()" class="btn-primary"><i class="fas fa-plus"></i> Add Customer</a>
+                <a href="index.html" class="btn-outline"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="dashboard-sidebar">
+            <div class="dashboard-user">
+                <div class="user-avatar">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="user-info">
+                    <h4>Administrator</h4>
+                    <p>scanback24@gmail.com</p>
+                </div>
+            </div>
+            
+            <ul class="dashboard-menu">
+                <li><a href="admin-dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="admin-customers.html"><i class="fas fa-users"></i> Customers</a></li>
+                <li><a href="admin-qr-codes.html"><i class="fas fa-qrcode"></i> QR Codes</a></li>
+                <li><a href="admin-scans.html"><i class="fas fa-search"></i> Scan History</a></li>
+                <li><a href="admin-reports.html"><i class="fas fa-chart-pie"></i> Analytics</a></li>
+                <li><a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="admin-messages.html"><i class="fas fa-envelope"></i> Messages</a></li>
+                <li><a href="admin-payments.html"><i class="fas fa-credit-card"></i> Payments</a></li>
+            </ul>
+            
+            <div class="sidebar-stats">
+                <div class="stat">
+                    <h5>System Status</h5>
+                    <p class="status-active"><i class="fas fa-circle"></i> Online</p>
+                </div>
+                <div class="stat">
+                    <h5>Last Backup</h5>
+                    <p>Today, 2:30 AM</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="dashboard-content">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Admin Dashboard</h1>
+                <div class="header-actions">
+                    <button class="btn-primary" onclick="exportQRcodes()">
+                        <i class="fas fa-download"></i> Export QR Codes
+                    </button>
+                    <button class="btn-secondary" onclick="printQRCodes()">
+                        <i class="fas fa-print"></i> Print QR Codes
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="dashboard-cards">
+                <div class="dashboard-card">
+                    <div class="card-title">Total Customers</div>
+                    <div class="card-value">0</div>
+                    <div class="card-trend">
+                        <i class="fas fa-arrow-up"></i> 12% this month
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <div class="card-title">Active Items</div>
+                    <div class="card-value">0</div>
+                    <div class="card-trend">
+                        <i class="fas fa-arrow-up"></i> 8% this month
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <div class="card-title">Recovery Rate</div>
+                    <div class="card-value">0%</div>
+                    <div class="card-trend">
+                        <i class="fas fa-arrow-up"></i> 3% this month
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <div class="card-title">Total Revenue</div>
+                    <div class="card-value">KSh 0</div>
+                    <div class="card-trend">
+                        <i class="fas fa-arrow-up"></i> 15% this month
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Customers -->
+            <div class="dashboard-table">
+                <div class="table-header">
+                    <h3>Recent Customers</h3>
+                    <div class="table-search">
+                        <input type="text" id="customerSearch" placeholder="Search customers...">
+                        <button class="btn-small" onclick="searchCustomers()">Search</button>
+                    </div>
+                </div>
+                <table class="table" id="customersTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Items</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Loaded by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Recent Scans -->
+            <div class="dashboard-table" style="margin-top: 30px;">
+                <div class="table-header">
+                    <h3>Recent Scans</h3>
+                    <div class="table-search">
+                        <input type="text" id="scanSearch" placeholder="Search scans...">
+                        <button class="btn-small" onclick="searchScans()">Search</button>
+                    </div>
+                </div>
+                <table class="table" id="scansTable">
+                    <thead>
+                        <tr>
+                            <th>Scan ID</th>
+                            <th>Item</th>
+                            <th>Location</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Loaded by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="dashboard-card" style="margin-top: 30px;">
+                <h3>Quick Actions</h3>
+                <div class="quick-actions">
+                    <button class="btn-primary" onclick="window.location.href='qr-generator.html'">
+                        <i class="fas fa-qrcode"></i> Generate QR Codes
+                    </button>
+                    <button class="btn-secondary" onclick="sendSMSNotification('all')">
+                        <i class="fas fa-sms"></i> Send Broadcast SMS
+                    </button>
+                    <button class="btn-outline" onclick="exportReports()">
+                        <i class="fas fa-file-export"></i> Generate Report
+                    </button>
+                    <button class="btn-outline" onclick="window.location.href='admin-settings.html'">
+                        <i class="fas fa-cog"></i> System Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

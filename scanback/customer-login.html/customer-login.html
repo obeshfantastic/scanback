@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Login - SCAN BACK</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-header">
+            <div class="logo">
+                <div class="logo-icon">🔒</div>
+                <div class="logo-text">
+                    <span class="logo-main">SCAN</span>
+                    <span class="logo-sub">BACK</span>
+                </div>
+            </div>
+            <h2>Customer Login</h2>
+            <p>Access your items and QR codes</p>
+        </div>
+        
+        <form class="login-form" id="customerLoginForm">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" value="customer@example.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password" value="Password123" required>
+            </div>
+            
+            <div class="form-options">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <a href="#" class="forgot-password">Forgot password?</a>
+            </div>
+            
+            <button type="submit" class="btn-primary">Login to My Account</button>
+        </form>
+        
+        <div class="login-footer">
+            <p>New customer? <a href="customer-register.html">Create account</a></p>
+            <p>Admin login? <a href="admin-login.html">Click here</a></p>
+            <p>Return to <a href="index.html">main website</a></p>
+        </div>
+        
+        <div class="demo-credentials">
+            <p><i class="fas fa-info-circle"></i> Demo Credentials:</p>
+            <p>Email: customer@example.com</p>
+            <p>Password: Password123</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
